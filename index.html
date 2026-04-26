@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>APAM CAM 2026</title>
+  
+  <link rel="manifest" href="manifest.json">
+  
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #ffffff; }
+    iframe { width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbxv0q0Pznto0ouMKu5CuEZTG6eN9xmDgGDGMFT3CfNHAWmVJmBK6PQCV3nSFIdgoHAhZg/exec" 
+    allow="geolocation; camera; microphone">
+  </iframe>
+
+  <script>
+    // Registra il Service Worker per rendere l'app installabile
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>

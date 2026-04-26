@@ -1,0 +1,21 @@
+{
+  "name": "APAM CAM 2026",
+  "short_name": "APPCAM",
+  "description": "App per la gestione installazioni",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
+  "icons": [
+    {
+      "src": "APLOGO1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "APLOGO1512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
