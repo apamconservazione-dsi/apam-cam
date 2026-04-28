@@ -8,22 +8,95 @@
   <link rel="manifest" href="manifest.json">
   
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #ffffff; }
-    iframe { width: 100%; height: 100%; border: none; }
+    /* Reset e stili base */
+    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #ffffff; font-family: sans-serif; }
+    
+    /* Schermata di caricamento (Splash Screen) */
+    #splash-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      z-index: 9999;
+      transition: opacity 0.5s ease; /* Effetto dissolvenza */
+    }
+
+    #splash-logo { 
+      width: 180px; 
+      height: auto; 
+      margin-bottom: 20px; 
+    }
+    
+    #app-name { 
+      font-size: 24px; 
+      font-weight: bold;
+      color: #333; 
+      margin-top: 20px;
+    }
+
+    #copyright-notice {
+      position: absolute;
+      bottom: 30px;
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+    }
+
+    /* Stile dell'iframe (l'app vera e propria) */
+    iframe { 
+      width: 100%; 
+      height: 100%; 
+      border: none; 
+      display: none; /* Nascondiamo l'app finché lo splash è attivo */
+    }
   </style>
 </head>
 <body>
 
+  <div id="splash-screen">
+    <img src="APLOGO1512.png" id="splash-logo" alt="Logo APAM">
+    <div id="app-name">APAM CAM 2026</div>
+    <div id="copyright-notice">
+      &copy; 2026 Davide Sigaudo. Tutti i diritti riservati.
+    </div>
+  </div>
+
   <iframe 
+    id="app-frame"
     src="https://script.google.com/macros/s/AKfycbxv0q0Pznto0ouMKu5CuEZTG6eN9xmDgGDGMFT3CfNHAWmVJmBK6PQCV3nSFIdgoHAhZg/exec" 
     allow="geolocation; camera; microphone">
   </iframe>
 
   <script>
-    // Registra il Service Worker per rendere l'app installabile
+    // Registrazione Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
+
+    // Gestione della transizione
+    window.addEventListener('load', function() {
+      // Aspettiamo 1 secondo (1000ms)
+      setTimeout(function() {
+        const splash = document.getElementById('splash-screen');
+        const frame = document.getElementById('app-frame');
+        
+        // Inizia la dissolvenza
+        splash.style.opacity = '0';
+        
+        // Dopo la dissolvenza (0.5s), scambiamo i display
+        setTimeout(function() {
+          splash.style.display = 'none';
+          frame.style.display = 'block';
+        }, 500);
+        
+      }, 1000);
+    });
   </script>
 </body>
 </html>
