@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+/* (c) 2026 Il Tuo Nome
+
+* Progetto: APAM CAM 2026
+
+* Tutti i diritti riservati.
+
+* * Questo script gestisce il frontend su Google Sheets, il salvataggio
+
+* delle foto su Drive e la logica di login.
+
+*/
+  <div id="splash-screen">
+    <img src="APLOGO1512.png" id="splash-logo" alt="Logo APAM">
+    <div id="app-name">APAM CAM 2026</div>
+    <div id="copyright-notice">
+      &copy; 2026 Davide Sigaudo. Tutti i diritti riservati.
+    </div>
+  </div>
+
+  <iframe 
+    id="app-frame"
+    src="https://script.google.com/macros/s/AKfycbxv0q0Pznto0ouMKu5CuEZTG6eN9xmDgGDGMFT3CfNHAWmVJmBK6PQCV3nSFIdgoHAhZg/exec" 
+    allow="geolocation; camera; microphone">
+  </iframe>
+
+  <script>
+    // Registrazione Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
+    // Gestione della transizione
+    window.addEventListener('load', function() {
+      // Aspettiamo 1 secondo (1000ms)
+      setTimeout(function() {
+        const splash = document.getElementById('splash-screen');
+        const frame = document.getElementById('app-frame');
+        
+        // Inizia la dissolvenza
+        splash.style.opacity = '0';
+        
+        // Dopo la dissolvenza (0.5s), scambiamo i display
+        setTimeout(function() {
+          splash.style.display = 'none';
+          frame.style.display = 'block';
+        }, 500);
+        
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>APAM CAM 2026</title>
